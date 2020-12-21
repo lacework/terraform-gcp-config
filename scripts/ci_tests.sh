@@ -9,10 +9,10 @@ set -eou pipefail
 readonly project_name=terraform-gcp-config
 
 TEST_CASES=(
-  examples/environment-variables-project-level-config/
-  examples/existing-service-account-org-level-config/
-  examples/organization-level-config/
-  examples/project-level-config/
+  examples/environment-variables-project-level-config
+  examples/existing-service-account-project-level-config
+  examples/organization-level-config
+  examples/project-level-config
 )
 
 log() {
