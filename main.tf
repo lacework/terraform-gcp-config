@@ -4,13 +4,17 @@ locals {
   service_account_name = var.use_existing_service_account ? (
     var.service_account_name
     ) : (
-    length(var.service_account_name) > 0 ? var.service_account_name : "lacework-svc-account"
+    length(var.service_account_name) > 0 ? var.service_account_name : "lwsvc-${random_id.uniq.hex}"
   )
   service_account_json_key = jsondecode(var.use_existing_service_account ? (
     base64decode(var.service_account_private_key)
     ) : (
     base64decode(module.lacework_cfg_svc_account.private_key)
   ))
+}
+
+resource "random_id" "uniq" {
+  byte_length = 4
 }
 
 module "lacework_cfg_svc_account" {
