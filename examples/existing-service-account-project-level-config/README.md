@@ -1,7 +1,6 @@
 # Use Existing Service Account at the Project Level
 
-This example shows how to use an existing service account to create a Google
-Cloud Project integration with Lacework.
+This example shows how to use an existing service account to create a Google Cloud Project integration with Lacework.
 
 The fields required for this example are:
 
@@ -23,6 +22,7 @@ An example of a service account private key looks like this:
 
 The following example uses the `file()` and `base64encode()` functions from Terraform to pass
 these parameters, create a `main.tf` with the following code:
+
 ```hcl
 locals {
   service_account_private_key = base64encode(file("/path/to/private_key.json"))
@@ -34,7 +34,7 @@ provider "lacework" {}
 
 module "lacework_svc_account" {
   source  = "lacework/config/gcp"
-  version = "~> 0.1.0"
+  version = "~> 0.1.1"
 
   use_existing_service_account = true
   service_account_name         = "my-service-account"
@@ -47,3 +47,5 @@ Run Terraform:
 $ terraform init
 $ GOOGLE_CREDENTIALS=account.json GOOGLE_PROJECT=my-project terraform apply
 ```
+
+For detailed information on integrating Lacework with Google Cloud see [GCP Compliance and Audit Trail Integration - Terraform From Any Supported Host](https://support.lacework.com/hc/en-us/articles/360057065094-GCP-Compliance-and-Audit-Trail-Integration-Terraform-From-Any-Supported-Host)
