@@ -25,7 +25,7 @@ variable "use_existing_service_account" {
 variable "service_account_name" {
   type        = string
   default     = ""
-  description = "The Service Account name (required when use_existing_service_account is set to true)"
+  description = "The Service Account name (required when use_existing_service_account is set to true). This can also be used to specify the new service account name when use_existing_service_account is set to false"
 }
 
 variable "service_account_private_key" {
@@ -37,4 +37,22 @@ variable "service_account_private_key" {
 variable "lacework_integration_name" {
   type    = string
   default = "TF config"
+}
+
+variable "required_config_apis" {
+  type = map
+  default = {
+    iam               = "iam.googleapis.com"
+    kms               = "cloudkms.googleapis.com"
+    dns               = "dns.googleapis.com"
+    pubsub            = "pubsub.googleapis.com"
+    compute           = "compute.googleapis.com"
+    logging           = "logging.googleapis.com"
+    bigquery          = "bigquery.googleapis.com"
+    sqladmin          = "sqladmin.googleapis.com"
+    containers        = "container.googleapis.com"
+    serviceusage      = "serviceusage.googleapis.com"
+    resourcemanager   = "cloudresourcemanager.googleapis.com"
+    storage_component = "storage-component.googleapis.com"
+  }
 }
