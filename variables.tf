@@ -56,3 +56,15 @@ variable "required_config_apis" {
     storage_component = "storage-component.googleapis.com"
   }
 }
+
+variable "prefix" {
+  type        = string
+  default     = "lw-cfg"
+  description = "The prefix that will be use at the beginning of every generated resource"
+}
+
+variable "wait_time" {
+  type        = string
+  default     = "10s"
+  description = "Amount of time to wait before the next resource is provisioned."
+}

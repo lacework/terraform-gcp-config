@@ -5,4 +5,4 @@
 [![GitHub release](https://img.shields.io/github/release/lacework/terraform-gcp-config.svg)](https://github.com/lacework/terraform-gcp-config/releases/)
 [![CircleCI status](https://circleci.com/gh/lacework/terraform-gcp-config.svg?style=shield)](https://circleci.com/gh/lacework/terraform-gcp-config)
 
-Terraform module for integrating Google Cloud Platform Organziations and Projects with Lacework for cloud resource configuration assessment.
+Terraform module for integrating Google Cloud Platform Organizations and Projects with Lacework for cloud resource configuration assessment.
