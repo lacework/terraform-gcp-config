@@ -13,13 +13,12 @@ locals {
     base64decode(module.lacework_cfg_svc_account.private_key)
   ))
   default_project_roles = [
-    "roles/viewer",
+    "roles/browser",
     "roles/iam.securityReviewer"
   ]
   default_organization_roles = [
-    "roles/viewer",
+    "roles/browser",
     "roles/iam.securityReviewer",
-    "roles/resourcemanager.organizationViewer"
   ]
   // if project org_integration is false and use_existing_service_account is false
   // project_roles = local.default_project_roles
@@ -46,15 +45,13 @@ module "lacework_cfg_svc_account" {
   version              = "~> 0.1.0"
   create               = var.use_existing_service_account ? false : true
   service_account_name = local.service_account_name
-  org_integration      = var.org_integration
-  organization_id      = var.organization_id
   project_id           = local.project_id
 }
 
 // Roles for a PROJECT level integration
 resource "google_project_iam_member" "for_lacework_service_account" {
   for_each = toset(local.project_roles)
-  project  = var.project_id
+  project  = local.project_id
   role     = each.value
   member   = "serviceAccount:${local.service_account_json_key.client_email}"
 }

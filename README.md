@@ -6,3 +6,50 @@
 [![CircleCI status](https://circleci.com/gh/lacework/terraform-gcp-config.svg?style=shield)](https://circleci.com/gh/lacework/terraform-gcp-config)
 
 Terraform module for integrating Google Cloud Platform Organizations and Projects with Lacework for cloud resource configuration assessment.
+
+_**Note:** When `use_existing_service_account` is set to true, the required roles must be added manually. Depending on the integration type this may be at Project or Organization level._
+
+## Required Roles
+```
+roles/browser
+roles/iam.securityReviewer
+```
+
+## Required APIs
+```
+iam.googleapis.com
+cloudkms.googleapis.com
+dns.googleapis.com
+pubsub.googleapis.com
+compute.googleapis.com
+logging.googleapis.com
+bigquery.googleapis.com
+sqladmin.googleapis.com
+container.googleapis.com
+serviceusage.googleapis.com
+cloudresourcemanager.googleapis.com
+storage-component.googleapis.com
+```
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|----------|
+|org_integration|If set to true, configure an organization level integration|bool|false|false|
+|organization_id|The organization ID, required if org_integration is set to true|string|""|false|
+|project_id|A project ID different from the default defined inside the provider|string|""|false|
+|use_existing_service_account|Set this to true to use an existing Service Account. When using an existing service account, the required roles must be added manually.|bool|false|false|
+|service_account_name|The Service Account name (required when use_existing_service_account is set to true). This can also be used to specify the new service account name when use_existing_service_account is set to false|string|""|false|
+|service_account_private_key|The private key in JSON format, base64 encoded (required when use_existing_service_account is set to true)|string|""|false|
+|lacework_integration_name|The integration name displayed in the Lacework UI.|string|TF GCR|false|
+|required_config_apis|The APIs that should be enabled for this integration to be successful.|map|See the Required APIs section|false|
+|prefix|The prefix that will be use at the beginning of every generated resource|string|lw-gcr|false|
+|wait_time|Amount of time to wait before the next resource is provisioned.|string|10s|false|
+
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+|service_account_name|The Service Account name|
+|service_account_private_key|The private key in JSON format, base64 encoded|
