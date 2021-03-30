@@ -42,7 +42,7 @@ data "google_project" "selected" {
 
 module "lacework_cfg_svc_account" {
   source               = "lacework/service-account/gcp"
-  version              = "~> 0.1.0"
+  version              = "~> 1.0"
   create               = var.use_existing_service_account ? false : true
   service_account_name = local.service_account_name
   project_id           = local.project_id
