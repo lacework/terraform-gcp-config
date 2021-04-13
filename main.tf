@@ -1,7 +1,7 @@
 locals {
   resource_level = var.org_integration ? "ORGANIZATION" : "PROJECT"
   resource_id    = var.org_integration ? var.organization_id : module.lacework_cfg_svc_account.project_id
-  project_id = data.google_project.selected.project_id
+  project_id     = data.google_project.selected.project_id
   service_account_name = var.use_existing_service_account ? (
     var.service_account_name
     ) : (

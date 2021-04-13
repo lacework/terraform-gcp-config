@@ -66,5 +66,5 @@ variable "prefix" {
 variable "wait_time" {
   type        = string
   default     = "10s"
-  description = "Amount of time to wait before the next resource is provisioned."
+  description = "Amount of time to wait before the next resource is provisioned"
 }
