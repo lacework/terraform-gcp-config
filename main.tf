@@ -20,16 +20,10 @@ locals {
     "roles/browser",
     "roles/iam.securityReviewer",
   ]
-  // if project org_integration is false and use_existing_service_account is false
-  // project_roles = local.default_project_roles
-  project_roles = var.org_integration ? [] : (
-    var.use_existing_service_account ? [] : local.default_project_roles
-  )
-  // if project org_integration is true and use_existing_service_account is false
-  // organization_roles = local.default_organization_roles
-  organization_roles = var.org_integration ? (
-    var.use_existing_service_account ? [] : local.default_organization_roles
-  ) : []
+  // if org_integration is false, project_roles = local.default_project_roles
+  project_roles = var.org_integration ? [] :  local.default_project_roles
+  // if org_integration is true, organization_roles = local.default_organization_roles
+  organization_roles = var.org_integration ? local.default_organization_roles : []
 }
 
 resource "random_id" "uniq" {
