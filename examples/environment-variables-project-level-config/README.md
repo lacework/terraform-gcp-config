@@ -39,7 +39,7 @@ provider "lacework" {}
 
 module "gcp_project_level_config" {
   source = "lacework/config/gcp"
-  version = "~> 0.1.1"
+  version = "~> 1.0"
 }
 ```
 

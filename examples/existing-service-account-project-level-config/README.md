@@ -34,7 +34,7 @@ provider "lacework" {}
 
 module "lacework_svc_account" {
   source  = "lacework/config/gcp"
-  version = "~> 0.1.1"
+  version = "~> 1.0"
 
   use_existing_service_account = true
   service_account_name         = "my-service-account"
