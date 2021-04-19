@@ -106,6 +106,7 @@ prepare_release() {
   generate_release_notes
   update_changelog
   push_release
+  open_pull_request
 }
 
 publish_release() {
@@ -194,8 +195,36 @@ push_release() {
   git checkout -B release
   git commit -am "Release v$VERSION"
   git push origin release
+}
+
+open_pull_request() {
+  local _body="/tmp/pr.json"
+  local _pr="/tmp/pr.out"
+
+  log "opening GH pull request"
+  generate_pr_body "$_body"
+  curl -XPOST -H "Authorization: token $GITHUB_TOKEN" --data  "@$_body" \
+        https://api.github.com/repos/${org_name}/${project_name}/pulls > $_pr
+
+  _pr_url=$(jq .html_url $_pr)
   log ""
-  log "Follow the above url and open a pull request"
+  log "It is time to review the release!"
+  log "    $_pr_url"
+}
+
+release_contains_features() {
+  latest_version=$(find_latest_version)
+  git log --no-merges --pretty="%s" ${latest_version}..main | grep "feat[:(]" >/dev/null
+  return $?
+}
+
+ check_for_minor_version_bump() {
+  if release_contains_features; then
+    log "new feature detected, minor version bump"
+    echo $VERSION | awk -F. '{printf("%d.%d.0", $1, $2+1)}' > VERSION
+    VERSION=$(cat VERSION)
+    log "updated version to v$VERSION"
+  fi
 }
 
 tag_release() {
@@ -259,8 +288,8 @@ bump_version() {
   fi
 
   log "commiting and pushing the version bump to github"
-  git config --global user.email "$git_email" 
-  git config --global user.name "$git_user"
+  git config --global user.email $git_email
+  git config --global user.name $git_user
   git add VERSION
   git commit -m "version bump to v$VERSION"
   git push origin main
@@ -291,6 +320,20 @@ generate_release_body() {
   "name": "$_tag",
   "draft": false,
   "prerelease": false,
+  "body": $_release_notes
+}
+EOF
+}
+
+generate_pr_body() {
+  _file=${1:-pr.json}
+  _version_no_tag=$(echo $VERSION | awk -F. '{printf("%d.%d.%d", $1, $2, $3)}')
+  _release_notes=$(jq -aRs .  <<< cat RELEASE_NOTES.md)
+  cat <<EOF > $_file
+{
+  "base": "main",
+  "head": "release",
+  "title": "Release v$_version_no_tag",
   "body": $_release_notes
 }
 EOF
