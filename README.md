@@ -22,6 +22,15 @@ roles/browser
 roles/iam.securityReviewer
 ```
 
+The following custom role is required depending on the integration level.
+`Lacework Compliance Role` or `Lacework Org Compliance Role`
+Both roles include the following permissions:
+```
+bigquery.datasets.get
+pubsub.topics.get
+storage.buckets.get
+```
+
 ## Required APIs
 ```
 iam.googleapis.com
