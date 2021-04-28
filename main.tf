@@ -43,6 +43,22 @@ module "lacework_cfg_svc_account" {
 }
 
 // Roles for a PROJECT level integration
+resource "google_project_iam_custom_role" "lacework_custom_project_role" {
+  role_id     = "lwComplianceRole"
+  title       = "Lacework Compliance Role"
+  description = "Lacework Compliance Role"
+  permissions = ["bigquery.datasets.get", "pubsub.topics.get", "storage.buckets.get"]
+  count       = local.resource_level == "PROJECT" ? 1 : 0
+}
+
+resource "google_project_iam_member" "lacework_custom_project_role_binding" {
+  project    = local.project_id
+  role       = google_project_iam_custom_role.lacework_custom_project_role.0.name
+  member     = "serviceAccount:${local.service_account_json_key.client_email}"
+  depends_on = [google_project_iam_custom_role.lacework_custom_project_role]
+  count      = local.resource_level == "PROJECT" ? 1 : 0
+}
+
 resource "google_project_iam_member" "for_lacework_service_account" {
   for_each = toset(local.project_roles)
   project  = local.project_id
@@ -51,6 +67,23 @@ resource "google_project_iam_member" "for_lacework_service_account" {
 }
 
 // Roles for an ORGANIZATION level integration
+resource "google_organization_iam_custom_role" "lacework_custom_organization_role" {
+  role_id     = "lwOrgComplianceRole"
+  org_id      = var.organization_id
+  title       = "Lacework Org Compliance Role"
+  description = "Lacework Org Compliance Role"
+  permissions = ["bigquery.datasets.get", "pubsub.topics.get", "storage.buckets.get"]
+  count       = local.resource_level == "ORGANIZATION" ? 1 : 0
+}
+
+resource "google_organization_iam_member" "lacework_custom_organization_role_binding" {
+  org_id     = var.organization_id
+  role       = google_organization_iam_custom_role.lacework_custom_organization_role.0.name
+  member     = "serviceAccount:${local.service_account_json_key.client_email}"
+  depends_on = [google_organization_iam_custom_role.lacework_custom_organization_role]
+  count      = local.resource_level == "ORGANIZATION" ? 1 : 0
+}
+
 resource "google_organization_iam_member" "for_lacework_service_account" {
   for_each = toset(local.organization_roles)
   org_id   = var.organization_id
