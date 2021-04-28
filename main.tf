@@ -78,7 +78,7 @@ resource "google_organization_iam_custom_role" "lacework_custom_organization_rol
 
 resource "google_organization_iam_member" "lacework_custom_organization_role_binding" {
   org_id     = var.organization_id
-  role       = google_project_iam_custom_role.lacework_custom_project_role.0.name
+  role       = google_organization_iam_custom_role.lacework_custom_organization_role.0.name
   member     = "serviceAccount:${local.service_account_json_key.client_email}"
   depends_on = [google_organization_iam_custom_role.lacework_custom_organization_role]
   count      = local.resource_level == "ORGANIZATION" ? 1 : 0
