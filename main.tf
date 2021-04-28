@@ -48,14 +48,15 @@ resource "google_project_iam_custom_role" "lacework_custom_project_role" {
   title       = "Lacework Compliance Role"
   description = "Lacework Compliance Role"
   permissions = ["bigquery.datasets.get", "pubsub.topics.get", "storage.buckets.get"]
-  create      = local.resource_level == "PROJECT"
+  count       = local.resource_level == "PROJECT" ? 1 : 0
 }
 
 resource "google_project_iam_member" "lacework_custom_project_role_binding" {
   project    = local.project_id
-  role       = google_project_iam_custom_role.lacework_custom_project_role.name
+  role       = google_project_iam_custom_role.lacework_custom_project_role.0.name
   member     = "serviceAccount:${local.service_account_json_key.client_email}"
   depends_on = [google_project_iam_custom_role.lacework_custom_project_role]
+  count      = local.resource_level == "PROJECT" ? 1 : 0
 }
 
 resource "google_project_iam_member" "for_lacework_service_account" {
@@ -72,14 +73,15 @@ resource "google_organization_iam_custom_role" "lacework_custom_organization_rol
   title       = "Lacework Org Compliance Role"
   description = "Lacework Org Compliance Role"
   permissions = ["bigquery.datasets.get", "pubsub.topics.get", "storage.buckets.get"]
-  create      = local.resource_level == "ORGANIZATION"
+  count       = local.resource_level == "ORGANIZATION" ? 1 : 0
 }
 
 resource "google_organization_iam_member" "lacework_custom_organization_role_binding" {
-  org_id   = var.organization_id
-  role     = google_project_iam_custom_role.lacework_custom_project_role.name
-  member   = "serviceAccount:${local.service_account_json_key.client_email}"
+  org_id     = var.organization_id
+  role       = google_project_iam_custom_role.lacework_custom_project_role.0.name
+  member     = "serviceAccount:${local.service_account_json_key.client_email}"
   depends_on = [google_organization_iam_custom_role.lacework_custom_organization_role]
+  count      = local.resource_level == "ORGANIZATION" ? 1 : 0
 }
 
 resource "google_organization_iam_member" "for_lacework_service_account" {
