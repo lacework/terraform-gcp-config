@@ -1,8 +1,8 @@
 # Release Notes
-Another day, another release. These are the release notes for the version `v1.0.1`.
+Another day, another release. These are the release notes for the version `v1.0.2`.
 
 ## Bug Fixes
-* fix: Add custom role with required get permissions (#19) (Ross)([024ca13](https://github.com/lacework/terraform-gcp-config/commit/024ca13d093e0c2b7da0cf2b98502b2ddafcac76))
+* fix: support for sensitive values (#18) (mr-menno)([947d587](https://github.com/lacework/terraform-gcp-config/commit/947d58764f9d8951875d80db19edd10fe632da26))
 ## Other Changes
-* chore: version bump to v1.0.1-dev (Lacework)([b3b0dc9](https://github.com/lacework/terraform-gcp-config/commit/b3b0dc9cf31bed7e187ea201a2f0611901d14f37))
-* ci: fix finding major versions during release (#21) (Salim Afiune)([5c560bd](https://github.com/lacework/terraform-gcp-config/commit/5c560bdfd59c83938ff0a34f6c8b077d8ad871bd))
+* chore: bump required version of TF to 0.12.31 (#23) (Scott Ford)([8329ded](https://github.com/lacework/terraform-gcp-config/commit/8329dedd151a9206a800236202ce2a27769d5f48))
+* chore: version bump to v1.0.2-dev (Lacework)([851cfd3](https://github.com/lacework/terraform-gcp-config/commit/851cfd3e9e26eff27173bbfc8a21f095e1865d73))
