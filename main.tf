@@ -21,7 +21,7 @@ locals {
     "roles/iam.securityReviewer",
   ]
   // if org_integration is false, project_roles = local.default_project_roles
-  project_roles = var.org_integration ? [] :  local.default_project_roles
+  project_roles = var.org_integration ? [] : local.default_project_roles
   // if org_integration is true, organization_roles = local.default_organization_roles
   organization_roles = var.org_integration ? local.default_organization_roles : []
 }
@@ -44,6 +44,7 @@ module "lacework_cfg_svc_account" {
 
 // Roles for a PROJECT level integration
 resource "google_project_iam_custom_role" "lacework_custom_project_role" {
+  project     = local.project_id
   role_id     = "lwComplianceRole"
   title       = "Lacework Compliance Role"
   description = "Lacework Compliance Role"
@@ -103,7 +104,7 @@ resource "google_project_service" "required_apis" {
 # before trying to create the Lacework external integration
 resource "time_sleep" "wait_time" {
   create_duration = var.wait_time
-  depends_on      = [
+  depends_on = [
     module.lacework_cfg_svc_account,
     google_project_service.required_apis,
     google_organization_iam_member.for_lacework_service_account,
