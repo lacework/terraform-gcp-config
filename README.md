@@ -27,6 +27,7 @@ The following custom role is required depending on the integration level.
 Both roles include the following permissions:
 ```
 bigquery.datasets.get
+compute.projects.get
 pubsub.topics.get
 storage.buckets.get
 ```

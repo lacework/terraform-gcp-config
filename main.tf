@@ -48,7 +48,7 @@ resource "google_project_iam_custom_role" "lacework_custom_project_role" {
   role_id     = "lwComplianceRole"
   title       = "Lacework Compliance Role"
   description = "Lacework Compliance Role"
-  permissions = ["bigquery.datasets.get", "pubsub.topics.get", "storage.buckets.get"]
+  permissions = ["bigquery.datasets.get", "compute.projects.get", "pubsub.topics.get", "storage.buckets.get"]
   count       = local.resource_level == "PROJECT" ? 1 : 0
 }
 
