@@ -45,7 +45,7 @@ module "lacework_cfg_svc_account" {
 // Roles for a PROJECT level integration
 resource "google_project_iam_custom_role" "lacework_custom_project_role" {
   project     = local.project_id
-  role_id     = "lwComplianceRole"
+  role_id     = "lwComplianceRole_${random_id.uniq.hex}"
   title       = "Lacework Compliance Role"
   description = "Lacework Compliance Role"
   permissions = ["bigquery.datasets.get", "compute.projects.get", "pubsub.topics.get", "storage.buckets.get"]
@@ -69,11 +69,11 @@ resource "google_project_iam_member" "for_lacework_service_account" {
 
 // Roles for an ORGANIZATION level integration
 resource "google_organization_iam_custom_role" "lacework_custom_organization_role" {
-  role_id     = "lwOrgComplianceRole"
+  role_id     = "lwOrgComplianceRole_${random_id.uniq.hex}"
   org_id      = var.organization_id
   title       = "Lacework Org Compliance Role"
   description = "Lacework Org Compliance Role"
-  permissions = ["bigquery.datasets.get", "pubsub.topics.get", "storage.buckets.get"]
+  permissions = ["bigquery.datasets.get", "compute.projects.get", "pubsub.topics.get", "storage.buckets.get"]
   count       = local.resource_level == "ORGANIZATION" ? 1 : 0
 }
 
