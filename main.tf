@@ -15,12 +15,12 @@ locals {
   default_project_roles = [
     "roles/browser",
     "roles/iam.securityReviewer",
-    "roles/iam.serviceAccountTokenCreator
+    "roles/iam.serviceAccountTokenCreator"
   ]
   default_organization_roles = [
     "roles/browser",
     "roles/iam.securityReviewer",
-    "roles/iam.serviceAccountTokenCreator",
+    "roles/iam.serviceAccountTokenCreator"
   ]
   // if org_integration is false, project_roles = local.default_project_roles
   project_roles = var.org_integration ? [] : local.default_project_roles
