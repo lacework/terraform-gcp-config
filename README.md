@@ -20,7 +20,6 @@ e.g. `terraform state rm 'google_project_iam_binding.for_lacework_service_accoun
 ```
 roles/browser
 roles/iam.securityReviewer
-roles/iam.serviceAccountTokenCreator
 ```
 
 The following custom role is required depending on the integration level.
