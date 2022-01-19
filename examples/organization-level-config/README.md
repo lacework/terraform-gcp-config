@@ -1,6 +1,15 @@
 # Integrate a Google Cloud Organization with Lacework for Configuration Assessment
 The following provides an example of integrating an entire Google Cloud Organization with Lacework for Cloud Resource configuration assessment.
 
+The fields required for this example are:
+
+| Name | Description | Type |
+|------|-------------|------|
+| `org_integration` | Set this to `true` to configure an organization level integration. | `bool` |
+| `organization_id` | The id of the GCP Organization to integrate with. | `string` |
+| `project_id` | The id of a Project, which will be used to deploy required resources for the integration. Note: if this is var is not explicitly set, the provider will check for the presence of the `GOOGLE_PROJECT` env var | `string` |
+
+
 ```hcl
 terraform {
   required_providers {
@@ -21,6 +30,7 @@ module "gcp_organization_level_config" {
   # Set this integration to be created at the Organization level,
   # a project id is needed since Lacework needs to deploy a few
   # resources and those will be created in the provided project
+  # if no project_id is supplied, the project hosting the Service Account used to run the Terraform will be used
   org_integration = true
   organization_id = "my-organization-id"
   project_id      = "abc-demo-project-123"
@@ -30,7 +40,7 @@ module "gcp_organization_level_config" {
 Run Terraform:
 ```
 $ terraform init
-$ GOOGLE_CREDENTIALS=account.json GOOGLE_PROJECT=my-project terraform apply
+$ GOOGLE_CREDENTIALS=account.json terraform apply
 ```
 
 For detailed information on integrating Lacework with Google Cloud see [GCP Compliance and Audit Trail Integration - Terraform From Any Supported Host](https://support.lacework.com/hc/en-us/articles/360057065094-GCP-Compliance-and-Audit-Trail-Integration-Terraform-From-Any-Supported-Host)
