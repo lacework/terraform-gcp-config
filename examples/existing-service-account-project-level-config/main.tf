@@ -2,7 +2,7 @@ provider "google" {}
 
 provider "lacework" {}
 
-module "gcp_organization_level_config" {
+module "gcp_project_level_config" {
   source = "../../"
 
   # Provide an existing service account

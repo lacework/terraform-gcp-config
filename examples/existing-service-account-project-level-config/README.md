@@ -32,7 +32,7 @@ provider "google" {}
 
 provider "lacework" {}
 
-module "lacework_svc_account" {
+module "gcp_project_level_config" {
   source  = "lacework/config/gcp"
   version = "~> 1.0"
 
