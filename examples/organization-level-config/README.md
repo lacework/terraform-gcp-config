@@ -7,7 +7,7 @@ The fields required for this example are:
 |------|-------------|------|
 | `org_integration` | Set this to `true` to configure an organization level integration. | `bool` |
 | `organization_id` | The id of the GCP Organization to integrate with. | `string` |
-| `project_id` | The id of a Project, which will be used to deploy required resources for the integration. Note: if this is var is not explicitly set, the provider will check for the presence of the `GOOGLE_PROJECT` env var. If this is also not set, the google provider will select the project hosting the Service Account used to run the Terraform. | `string` |
+| `project_id` | The id of a Project, which will be used to deploy required resources for the integration. Note: if this is var is not explicitly set, the provider will check for the presence of the `GOOGLE_PROJECT` env var | `string` |
 
 
 ```hcl
