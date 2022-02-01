@@ -14,11 +14,13 @@ locals {
   ))
   default_project_roles = [
     "roles/browser",
-    "roles/iam.securityReviewer"
+    "roles/iam.securityReviewer",
+    "roles/cloudasset.viewer"
   ]
   default_organization_roles = [
     "roles/browser",
-    "roles/iam.securityReviewer"
+    "roles/iam.securityReviewer",
+    "roles/cloudasset.viewer"
   ]
   // if org_integration is false, project_roles = local.default_project_roles
   project_roles = var.org_integration ? [] : local.default_project_roles
