@@ -20,6 +20,7 @@ e.g. `terraform state rm 'google_project_iam_binding.for_lacework_service_accoun
 ```
 roles/browser
 roles/iam.securityReviewer
+roles/cloudasset.viewer
 ```
 
 The following custom role is required depending on the integration level.
@@ -47,6 +48,7 @@ container.googleapis.com
 serviceusage.googleapis.com
 cloudresourcemanager.googleapis.com
 storage-component.googleapis.com
+cloudasset.googleapis.com
 ```
 
 ## Inputs
