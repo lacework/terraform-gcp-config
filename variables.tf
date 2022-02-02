@@ -42,18 +42,19 @@ variable "lacework_integration_name" {
 variable "required_config_apis" {
   type = map
   default = {
-    iam               = "iam.googleapis.com"
-    kms               = "cloudkms.googleapis.com"
-    dns               = "dns.googleapis.com"
-    pubsub            = "pubsub.googleapis.com"
-    compute           = "compute.googleapis.com"
-    logging           = "logging.googleapis.com"
-    bigquery          = "bigquery.googleapis.com"
-    sqladmin          = "sqladmin.googleapis.com"
-    containers        = "container.googleapis.com"
-    serviceusage      = "serviceusage.googleapis.com"
-    resourcemanager   = "cloudresourcemanager.googleapis.com"
-    storage_component = "storage-component.googleapis.com"
+    iam                  = "iam.googleapis.com"
+    kms                  = "cloudkms.googleapis.com"
+    dns                  = "dns.googleapis.com"
+    pubsub               = "pubsub.googleapis.com"
+    compute              = "compute.googleapis.com"
+    logging              = "logging.googleapis.com"
+    bigquery             = "bigquery.googleapis.com"
+    sqladmin             = "sqladmin.googleapis.com"
+    containers           = "container.googleapis.com"
+    serviceusage         = "serviceusage.googleapis.com"
+    resourcemanager      = "cloudresourcemanager.googleapis.com"
+    storage_component    = "storage-component.googleapis.com"
+    cloudasset_inventory = "cloudasset.googleapis.com"
   }
 }
 
