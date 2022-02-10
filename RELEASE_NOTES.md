@@ -1,7 +1,7 @@
 # Release Notes
-Another day, another release. These are the release notes for the version `v1.2.0`.
+Another day, another release. These are the release notes for the version `v1.3.0`.
 
 ## Features
-* feat: Add 'roles/cloudasset.viewer' to GCP integrations (#44) (Irwin Kennedy)([49cf220](https://github.com/lacework/terraform-gcp-config/commit/49cf2208bcdda1543129190ecfc9af2637b6719b))
+* feat: allow google provider version >= 3.0.0, < 5.0.0 (#43) (Darren)([f07655d](https://github.com/lacework/terraform-gcp-config/commit/f07655d3c6ca4bc8762406755417d965f3e45dc2))
 ## Other Changes
-* ci: version bump to v1.1.3-dev (Lacework)([3d42449](https://github.com/lacework/terraform-gcp-config/commit/3d4244961ba0a4182649bcef9baec44ade750353))
+* ci: version bump to v1.2.1-dev (Lacework)([95cae17](https://github.com/lacework/terraform-gcp-config/commit/95cae1767ea986efc93d42b230226211e3a04537))
