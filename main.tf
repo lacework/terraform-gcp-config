@@ -58,8 +58,8 @@ locals {
   root_project_roles = (var.org_integration && var.exclude_folders) ? (
     setproduct(local.root_projects[0][*], local.default_folder_roles)
     ) : (
-      []
-    )
+    []
+  )
 }
 
 resource "random_id" "uniq" {
@@ -148,10 +148,10 @@ resource "google_folder_iam_member" "for_lacework_service_account" {
 }
 
 resource "google_project_iam_member" "for_lacework_service_account_root_projects" {
-  count  = length(local.root_project_roles)
+  count   = length(local.root_project_roles)
   project = local.root_project_roles[count.index][0]
-  role   = local.root_project_roles[count.index][1]
-  member = "serviceAccount:${local.service_account_json_key.client_email}"
+  role    = local.root_project_roles[count.index][1]
+  member  = "serviceAccount:${local.service_account_json_key.client_email}"
 }
 
 resource "google_project_service" "required_apis" {
