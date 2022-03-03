@@ -9,6 +9,10 @@ module "gcp_organization_level_config" {
   # a project id is needed since Lacework needs to deploy a few
   # resources and those will be created in the provided project
   org_integration = true
-  organization_id = "my-organization-id"
+  organization_id = var.organization_id
   project_id      = "abc-demo-project-123"
+}
+
+variable "organization_id" {
+  default = "my-organization-id"
 }
