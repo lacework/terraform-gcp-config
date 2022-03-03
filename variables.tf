@@ -40,7 +40,7 @@ variable "lacework_integration_name" {
 }
 
 variable "required_config_apis" {
-  type = map
+  type = map(any)
   default = {
     iam                  = "iam.googleapis.com"
     kms                  = "cloudkms.googleapis.com"
@@ -68,4 +68,22 @@ variable "wait_time" {
   type        = string
   default     = "10s"
   description = "Amount of time to wait before the next resource is provisioned"
+}
+
+variable "exclude_folders" {
+  type        = bool
+  default     = false
+  description = "Enables logic to exclude a list of folders from the integration. Default is false"
+}
+
+variable "folders_to_exclude" {
+  type        = set(string)
+  default     = []
+  description = "List of root folders to exclude if `exclude_folders` is set to `true`.  Format is 'folders/1234567890'"
+}
+
+variable "include_root_projects" {
+  type        = bool
+  default     = true
+  description = "Enables logic to include root-level projects if `exclude_folders` is set to `true`.  Default is true"
 }
