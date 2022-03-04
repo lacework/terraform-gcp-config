@@ -21,7 +21,7 @@ module "gcp_organization_level_config" {
   project_id           = var.project_id
   exclude_folders      = true
   folders_to_exclude   = [
-    "folders/578370918314", 
-    "folders/1099205162015",
+    "folders/12345678901", 
+    "folders/01234567890",
   ] 
 }
