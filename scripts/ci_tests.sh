@@ -12,7 +12,6 @@ TEST_CASES=(
   examples/environment-variables-project-level-config
   examples/existing-service-account-project-level-config
   examples/organization-level-config
-  examples/organization-level-config-exclude-folders
   examples/project-level-config
 )
 

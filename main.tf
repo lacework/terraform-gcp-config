@@ -25,41 +25,7 @@ locals {
   // if org_integration is false, project_roles = local.default_project_roles
   project_roles = var.org_integration ? [] : local.default_project_roles
   // if org_integration is true, organization_roles = local.default_organization_roles
-  organization_roles = (var.org_integration && !var.exclude_folders) ? (
-    local.default_organization_roles
-    ) : (
-    (var.org_integration && var.exclude_folders) ? (
-      ["roles/resourcemanager.organizationViewer"]
-      ) : (
-      []
-    )
-  )
-  default_folder_roles = (var.org_integration && var.exclude_folders) ? (
-    [
-      "roles/browser",
-      "roles/iam.securityReviewer",
-      "roles/cloudasset.viewer",
-      google_organization_iam_custom_role.lacework_custom_organization_role.0.name
-    ]
-    ) : (
-    []
-  )
-  folders = [
-    (var.org_integration && var.exclude_folders) ? setsubtract(data.google_folders.my-org-folders[0].folders[*].name, var.folders_to_exclude) : toset([])
-  ]
-  root_projects = [
-    (var.org_integration && var.exclude_folders) ? toset(data.google_projects.my-org-projects[0].projects[*].project_id) : toset([])
-  ]
-  folder_roles = (var.org_integration && var.exclude_folders) ? (
-    setproduct(local.folders[0][*], local.default_folder_roles)
-    ) : (
-    []
-  )
-  root_project_roles = (var.org_integration && var.exclude_folders) ? (
-    setproduct(local.root_projects[0][*], local.default_folder_roles)
-    ) : (
-    []
-  )
+  organization_roles = var.org_integration ? local.default_organization_roles : []
 }
 
 resource "random_id" "uniq" {
@@ -105,17 +71,6 @@ resource "google_project_iam_member" "for_lacework_service_account" {
 }
 
 // Roles for an ORGANIZATION level integration
-
-data "google_folders" "my-org-folders" {
-  count     = (var.org_integration && var.exclude_folders) ? 1 : 0
-  parent_id = "organizations/${var.organization_id}"
-}
-
-data "google_projects" "my-org-projects" {
-  count  = (var.exclude_folders && var.include_root_projects) ? 1 : 0
-  filter = "parent.id=${var.organization_id}"
-}
-
 resource "google_organization_iam_custom_role" "lacework_custom_organization_role" {
   role_id     = "lwOrgComplianceRole_${random_id.uniq.hex}"
   org_id      = var.organization_id
@@ -130,7 +85,7 @@ resource "google_organization_iam_member" "lacework_custom_organization_role_bin
   role       = google_organization_iam_custom_role.lacework_custom_organization_role.0.name
   member     = "serviceAccount:${local.service_account_json_key.client_email}"
   depends_on = [google_organization_iam_custom_role.lacework_custom_organization_role]
-  count      = (local.resource_level == "ORGANIZATION" && !var.exclude_folders) ? 1 : 0
+  count      = local.resource_level == "ORGANIZATION" ? 1 : 0
 }
 
 resource "google_organization_iam_member" "for_lacework_service_account" {
@@ -138,20 +93,6 @@ resource "google_organization_iam_member" "for_lacework_service_account" {
   org_id   = var.organization_id
   role     = each.value
   member   = "serviceAccount:${local.service_account_json_key.client_email}"
-}
-
-resource "google_folder_iam_member" "for_lacework_service_account" {
-  count  = length(local.folder_roles)
-  folder = local.folder_roles[count.index][0]
-  role   = local.folder_roles[count.index][1]
-  member = "serviceAccount:${local.service_account_json_key.client_email}"
-}
-
-resource "google_project_iam_member" "for_lacework_service_account_root_projects" {
-  count   = length(local.root_project_roles)
-  project = local.root_project_roles[count.index][0]
-  role    = local.root_project_roles[count.index][1]
-  member  = "serviceAccount:${local.service_account_json_key.client_email}"
 }
 
 resource "google_project_service" "required_apis" {
