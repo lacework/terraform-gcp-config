@@ -25,7 +25,7 @@ provider "lacework" {}
 
 module "gcp_organization_level_config" {
   source = "lacework/config/gcp"
-  version = "~> 1.0"
+  version = "~> 2.0"
   
   # Set this integration to be created at the Organization level,
   # a project id is needed since Lacework needs to deploy a few
@@ -43,4 +43,4 @@ $ terraform init
 $ GOOGLE_CREDENTIALS=account.json terraform apply
 ```
 
-For detailed information on integrating Lacework with Google Cloud see [GCP Compliance and Audit Trail Integration - Terraform From Any Supported Host](https://support.lacework.com/hc/en-us/articles/360057065094-GCP-Compliance-and-Audit-Trail-Integration-Terraform-From-Any-Supported-Host)
+For detailed information on integrating Lacework with Google Cloud see [GCP Compliance and Audit Trail Integration - Terraform From Any Supported Host](https://docs.lacework.com/gcp-compliance-and-audit-log-integration-terraform-from-any-supported-host)

@@ -39,8 +39,8 @@ provider "lacework" {}
 
 module "gcp_project_level_config" {
   source = "lacework/config/gcp"
-  version = "~> 1.0"
+  version = "~> 2.0"
 }
 ```
 
-For detailed information on integrating Lacework with Google Cloud see [GCP Compliance and Audit Trail Integration - Terraform From Any Supported Host](https://support.lacework.com/hc/en-us/articles/360057065094-GCP-Compliance-and-Audit-Trail-Integration-Terraform-From-Any-Supported-Host)
+For detailed information on integrating Lacework with Google Cloud see [GCP Compliance and Audit Trail Integration - Terraform From Any Supported Host](https://docs.lacework.com/gcp-compliance-and-audit-log-integration-terraform-from-any-supported-host)
