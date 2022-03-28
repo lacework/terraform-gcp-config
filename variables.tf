@@ -70,12 +70,6 @@ variable "wait_time" {
   description = "Amount of time to wait before the next resource is provisioned"
 }
 
-variable "exclude_folders" {
-  type        = bool
-  default     = false
-  description = "Enables logic to exclude a list of folders from the integration. Default is false"
-}
-
 variable "folders_to_exclude" {
   type        = set(string)
   default     = []

@@ -36,7 +36,6 @@ module "gcp_organization_level_config" {
   org_integration      = true
   organization_id      = "my-organization-id"
   project_id           = "abc-demo-project-123"
-  exclude_folders      = true
   folders_to_exclude   = [
     "folders/578370918314", 
     "folders/1099205162015",
@@ -50,4 +49,4 @@ $ terraform init
 $ GOOGLE_CREDENTIALS=account.json terraform apply
 ```
 
-For detailed information on integrating Lacework with Google Cloud see [GCP Compliance and Audit Trail Integration - Terraform From Any Supported Host](https://support.lacework.com/hc/en-us/articles/360057065094-GCP-Compliance-and-Audit-Trail-Integration-Terraform-From-Any-Supported-Host)
+For detailed information on integrating Lacework with Google Cloud see [GCP Compliance and Audit Trail Integration - Terraform From Any Supported Host](https://docs.lacework.com/gcp-compliance-and-audit-log-integration-terraform-from-any-supported-host)

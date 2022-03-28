@@ -19,7 +19,6 @@ module "gcp_organization_level_config" {
   org_integration      = true
   organization_id      = var.organization_id
   project_id           = var.project_id
-  exclude_folders      = true
   folders_to_exclude   = [
     "folders/12345678901", 
     "folders/01234567890",
