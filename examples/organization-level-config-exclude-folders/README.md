@@ -8,8 +8,7 @@ The fields required for this example are:
 | `org_integration` | Set this to `true` to configure an organization level integration. | `bool` |
 | `organization_id` | The id of the GCP Organization to integrate with. | `string` |
 | `project_id` | The id of a Project, which will be used to deploy required resources for the integration. Note: if this is var is not explicitly set, the provider will check for the presence of the `GOOGLE_PROJECT` env var | `string` |
-| `exclude_folders` | Enables logic to exclude a list of folders from the integration. Default is false | `bool` |
-| `folders_to_exclude` | List of root folders to exclude if `exclude_folders` is set to `true`.  Format is 'folders/1234567890' | `set(string)` |
+| `folders_to_exclude` | List of root folders to exclude in an organization-level integration.  Format is 'folders/1234567890' | `set(string)` |
 
 
 ```hcl
