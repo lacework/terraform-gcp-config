@@ -2,6 +2,10 @@ provider "google" {}
 
 provider "lacework" {}
 
+variable "project_id" {
+  default = "my-project-id"
+}
+
 module "gcp_organization_level_config" {
   source = "../../"
 

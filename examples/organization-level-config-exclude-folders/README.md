@@ -8,6 +8,7 @@ The fields required for this example are:
 | `org_integration` | Set this to `true` to configure an organization level integration. | `bool` |
 | `organization_id` | The id of the GCP Organization to integrate with. | `string` |
 | `project_id` | The id of a Project, which will be used to deploy required resources for the integration. Note: if this is var is not explicitly set, the provider will check for the presence of the `GOOGLE_PROJECT` env var | `string` |
+| `folders_to_exclude` | List of root folders to exclude in an organization-level integration.  Format is 'folders/1234567890' | `set(string)` |
 
 
 ```hcl
@@ -31,9 +32,13 @@ module "gcp_organization_level_config" {
   # a project id is needed since Lacework needs to deploy a few
   # resources and those will be created in the provided project
   # if no project_id is supplied, the project hosting the Service Account used to run the Terraform will be used
-  org_integration = true
-  organization_id = "my-organization-id"
-  project_id      = "abc-demo-project-123"
+  org_integration      = true
+  organization_id      = "my-organization-id"
+  project_id           = "abc-demo-project-123"
+  folders_to_exclude   = [
+    "folders/578370918314", 
+    "folders/1099205162015",
+  ] 
 }
 ```
 
