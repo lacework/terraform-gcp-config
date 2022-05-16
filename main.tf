@@ -49,14 +49,14 @@ locals {
     (var.org_integration && local.exclude_folders) ? setsubtract(data.google_folders.my-org-folders[0].folders[*].name, var.folders_to_exclude) : toset([])
   ]
   root_projects = [
-    (var.org_integration && local.exclude_folders) ? toset(data.google_projects.my-org-projects[0].projects[*].project_id) : toset([])
+    (var.org_integration && local.exclude_folders && var.include_root_projects) ? toset(data.google_projects.my-org-projects[0].projects[*].project_id) : toset([])
   ]
   folder_roles = (var.org_integration && local.exclude_folders) ? (
     setproduct(local.folders[0][*], local.default_folder_roles)
     ) : (
     []
   )
-  root_project_roles = (var.org_integration && local.exclude_folders) ? (
+  root_project_roles = (var.org_integration && var.include_root_projects) ? (
     setproduct(local.root_projects[0][*], local.default_folder_roles)
     ) : (
     []
