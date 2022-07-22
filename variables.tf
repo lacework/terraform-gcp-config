@@ -85,3 +85,9 @@ variable "include_root_projects" {
   default     = true
   description = "Enables logic to include root-level projects if excluding folders.  Default is true"
 }
+
+variable "folders_to_include" {
+  type        = set(string)
+  default     = []
+  description = "List of root folders to include in an organization-level integration.  Format is 'folders/1234567890'"
+}

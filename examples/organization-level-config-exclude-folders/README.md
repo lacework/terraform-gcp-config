@@ -1,5 +1,5 @@
-# Integrate a Google Cloud Organization with Lacework for Configuration Assessment
-The following provides an example of integrating an entire Google Cloud Organization with Lacework for Cloud Resource configuration assessment.
+# Integrate a Google Cloud Organization with Lacework for Configuration Assessment (Folder Exclusion)
+The following provides an example of integrating a Google Cloud Organization with Lacework for Cloud Resource configuration assessment, excluding specific folders.
 
 The fields required for this example are:
 
