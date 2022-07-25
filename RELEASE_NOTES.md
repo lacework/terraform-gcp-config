@@ -1,9 +1,7 @@
 # Release Notes
-Another day, another release. These are the release notes for the version `v2.1.0`.
+Another day, another release. These are the release notes for the version `v2.1.1`.
 
-## Features
-* feat: Add project id variable validation (#56) (Tim Arenz)([7fc3857](https://github.com/lacework/terraform-gcp-config/commit/7fc38579f36a78f89a55d422b2b4a91708334936))
 ## Bug Fixes
-* fix: updated project role logic to respect include_root_projects (#58) (Michael Droessler)([11ae8f6](https://github.com/lacework/terraform-gcp-config/commit/11ae8f6fcf8a5a5ab36335c5ffa639b3af182bc7))
+* fix(variable): project id regex to match constraint (#63) (Salim Afiune)([c33ff5d](https://github.com/lacework/terraform-gcp-config/commit/c33ff5d3a45f005a1259bd9f5482ec81585be6a5))
 ## Other Changes
-* ci: version bump to v2.0.1-dev (Lacework)([1723350](https://github.com/lacework/terraform-gcp-config/commit/172335020105230a36718288532b0effc1245344))
+* ci: version bump to v2.1.1-dev (Lacework)([c6982a7](https://github.com/lacework/terraform-gcp-config/commit/c6982a76c938205a2f131037eb44c4ce99acb259))
