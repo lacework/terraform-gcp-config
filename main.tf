@@ -3,7 +3,7 @@ locals {
   resource_id    = var.org_integration ? var.organization_id : module.lacework_cfg_svc_account.project_id
   project_id     = data.google_project.selected.project_id
 
-  exclude_folders = length(var.folders_to_exclude) != 0
+  exclude_folders  = length(var.folders_to_exclude) != 0
   explicit_folders = length(var.folders_to_include) != 0
 
   service_account_name = var.use_existing_service_account ? (
@@ -11,28 +11,28 @@ locals {
     ) : (
     length(var.service_account_name) > 0 ? var.service_account_name : "${var.prefix}-${random_id.uniq.hex}"
   )
-  
+
   service_account_json_key = jsondecode(var.use_existing_service_account ? (
     base64decode(var.service_account_private_key)
     ) : (
     base64decode(module.lacework_cfg_svc_account.private_key)
   ))
-  
+
   default_project_roles = [
     "roles/browser",
     "roles/iam.securityReviewer",
     "roles/cloudasset.viewer"
   ]
-  
+
   default_organization_roles = [
     "roles/browser",
     "roles/iam.securityReviewer",
     "roles/cloudasset.viewer"
   ]
-  
+
   // if org_integration is false, project_roles = local.default_project_roles
   project_roles = var.org_integration ? [] : local.default_project_roles
-  
+
   // if org_integration is true, organization_roles = local.default_organization_roles
   organization_roles = (var.org_integration && !(local.exclude_folders || local.explicit_folders)) ? (
     local.default_organization_roles
@@ -43,7 +43,7 @@ locals {
       []
     )
   )
-  
+
   default_folder_roles = (var.org_integration && (local.exclude_folders || local.explicit_folders)) ? (
     [
       "roles/browser",
@@ -54,27 +54,27 @@ locals {
     ) : (
     []
   )
-  
+
   folders = [
     (var.org_integration && local.exclude_folders) ? (
       setsubtract(data.google_folders.my-org-folders[0].folders[*].name, var.folders_to_exclude)
-    ) : (
-      var.org_integration && local.explicit_folders) ? (
-        var.folders_to_include
       ) : (
-        toset([])
-      ) ]
-  
+      var.org_integration && local.explicit_folders) ? (
+      var.folders_to_include
+      ) : (
+      toset([])
+  )]
+
   root_projects = [
     (var.org_integration && local.exclude_folders && var.include_root_projects) ? toset(data.google_projects.my-org-projects[0].projects[*].project_id) : toset([])
   ]
-  
+
   folder_roles = (var.org_integration && (local.exclude_folders || local.explicit_folders)) ? (
     setproduct(local.folders[0][*], local.default_folder_roles)
     ) : (
     []
   )
-  
+
   root_project_roles = (var.org_integration && var.include_root_projects) ? (
     setproduct(local.root_projects[0][*], local.default_folder_roles)
     ) : (

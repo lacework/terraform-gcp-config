@@ -1,4 +1,4 @@
-# Integrate a Google Cloud Organization with Lacework for Configuration Assessment [Specific Folder(s)]
+# Integrate Google Cloud Folders with Lacework at the Organization level
 The following provides an example of integrating a Google Cloud Organization with Lacework for Cloud Resource configuration assessment, targeting specific folders.
 
 The fields required for this example are:
@@ -24,6 +24,8 @@ provider "google" {}
 provider "lacework" {}
 
 module "gcp_organization_level_config" {
+  source          = "lacework/config/gcp"
+  version         = "~> 2.2"
   org_integration = true
   organization_id = var.organization_id
   project_id      = "abc-demo-project-123"
@@ -35,5 +37,5 @@ module "gcp_organization_level_config" {
 }
 ```
 
-For detailed information on integrating Lacework with Google Cloud see [GCP Compliance and Audit Trail Integration - Terraform From Any Supported Host](https://docs.lacework.com/gcp-compliance-and-audit-log-integration-terraform-from-any-supported-host)
+For detailed information on integrating Lacework with Google Cloud see [GCP Compliance and Audit Trail Integration - Terraform From Any Supported Host](https://docs.lacework.com/onboarding/gcp-compliance-and-audit-log-integration-terraform-from-any-supported-host)
 

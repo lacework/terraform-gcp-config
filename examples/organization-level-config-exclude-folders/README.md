@@ -1,4 +1,4 @@
-# Integrate a Google Cloud Organization with Lacework for Configuration Assessment (Folder Exclusion)
+# Integrate a Google Cloud Organization with Lacework for Configuration Assessment Excluding Folder(s)
 The following provides an example of integrating a Google Cloud Organization with Lacework for Cloud Resource configuration assessment, excluding specific folders.
 
 The fields required for this example are:
@@ -48,4 +48,4 @@ $ terraform init
 $ GOOGLE_CREDENTIALS=account.json terraform apply
 ```
 
-For detailed information on integrating Lacework with Google Cloud see [GCP Compliance and Audit Trail Integration - Terraform From Any Supported Host](https://docs.lacework.com/gcp-compliance-and-audit-log-integration-terraform-from-any-supported-host)
+For detailed information on integrating Lacework with Google Cloud see [GCP Compliance and Audit Trail Integration - Terraform From Any Supported Host](https://docs.lacework.com/onboarding/gcp-compliance-and-audit-log-integration-terraform-from-any-supported-host)
