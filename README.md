@@ -64,10 +64,10 @@ cloudasset.googleapis.com
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 4.11.0 |
-| <a name="provider_lacework"></a> [lacework](#provider\_lacework) | 0.15.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.1.0 |
-| <a name="provider_time"></a> [time](#provider\_time) | 0.7.2 |
+| <a name="provider_google"></a> [google](#provider\_google) | >= 4.4.0, < 5.0.0 |
+| <a name="provider_lacework"></a> [lacework](#provider\_lacework) | ~> 0.2 |
+| <a name="provider_random"></a> [random](#provider\_random) | n/a |
+| <a name="provider_time"></a> [time](#provider\_time) | ~> 0.6 |
 
 ## Modules
 
@@ -100,6 +100,7 @@ cloudasset.googleapis.com
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_folders_to_exclude"></a> [folders\_to\_exclude](#input\_folders\_to\_exclude) | List of root folders to exclude in an organization-level integration.  Format is 'folders/1234567890' | `set(string)` | `[]` | no |
+| <a name="input_folders_to_include"></a> [folders\_to\_include](#input\_folders\_to\_include) | List of root folders to include in an organization-level integration.  Format is 'folders/1234567890' | `set(string)` | `[]` | no |
 | <a name="input_include_root_projects"></a> [include\_root\_projects](#input\_include\_root\_projects) | Enables logic to include root-level projects if excluding folders.  Default is true | `bool` | `true` | no |
 | <a name="input_lacework_integration_name"></a> [lacework\_integration\_name](#input\_lacework\_integration\_name) | n/a | `string` | `"TF config"` | no |
 | <a name="input_org_integration"></a> [org\_integration](#input\_org\_integration) | If set to true, configure an organization level integration | `bool` | `false` | no |

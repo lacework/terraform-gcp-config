@@ -12,9 +12,9 @@ module "gcp_organization_level_config" {
   organization_id = var.organization_id
   project_id      = "abc-demo-project-123"
 
-  folders_to_exclude = [
-    "folders/578370918314",
-    "folders/1099205162015",
+  folders_to_include = [
+    "folders/123456789012",
+    "folders/345678901234"
   ]
 }
 
