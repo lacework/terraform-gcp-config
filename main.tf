@@ -150,7 +150,7 @@ resource "google_organization_iam_member" "lacework_custom_organization_role_bin
   role       = google_organization_iam_custom_role.lacework_custom_organization_role.0.name
   member     = "serviceAccount:${local.service_account_json_key.client_email}"
   depends_on = [google_organization_iam_custom_role.lacework_custom_organization_role]
-  count      = (local.resource_level == "ORGANIZATION" && !(local.exclude_folders || local.explicit_folders)) ? 1 : 0
+  count      = local.resource_level == "ORGANIZATION" ? 1 : 0
 }
 
 resource "google_organization_iam_member" "for_lacework_service_account" {
