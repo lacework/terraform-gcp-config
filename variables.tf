@@ -59,6 +59,7 @@ variable "required_config_apis" {
     resourcemanager      = "cloudresourcemanager.googleapis.com"
     storage_component    = "storage-component.googleapis.com"
     cloudasset_inventory = "cloudasset.googleapis.com"
+    essentialcontacts    = "essentialcontacts.googleapis.com"
   }
 }
 
