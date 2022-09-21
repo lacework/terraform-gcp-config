@@ -1,7 +1,7 @@
 # Release Notes
-Another day, another release. These are the release notes for the version `v2.3.0`.
+Another day, another release. These are the release notes for the version `v2.4.0`.
 
 ## Features
-* feat(api): Enable api essentialcontacts.googleapis.com api (#60) (Irwin Kennedy)([a4cd69c](https://github.com/lacework/terraform-gcp-config/commit/a4cd69ceb3a8b7430489fd16a5231c6811571b6d))
+* feat: add skip iam grants flag (#68) (Mike Laramie)([13f8e71](https://github.com/lacework/terraform-gcp-config/commit/13f8e71ced7c3fa6c4a043d9f91ca60a688790dd))
 ## Other Changes
-* ci: version bump to v2.2.1-dev (Lacework)([fdaa034](https://github.com/lacework/terraform-gcp-config/commit/fdaa03449e26de26f805463e75c38bccb08a341a))
+* ci: version bump to v2.3.1-dev (Lacework)([b904c5c](https://github.com/lacework/terraform-gcp-config/commit/b904c5cb8f5d81a270caa68f64b9d70193eb5623))
