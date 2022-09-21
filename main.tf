@@ -18,13 +18,15 @@ locals {
     base64decode(module.lacework_cfg_svc_account.private_key)
   ))
 
-  default_project_roles = [
+  skip_iam_grants = var.use_existing_service_account && var.skip_iam_grants
+
+  default_project_roles = local.skip_iam_grants ? [] : [
     "roles/browser",
     "roles/iam.securityReviewer",
     "roles/cloudasset.viewer"
   ]
 
-  default_organization_roles = [
+  default_organization_roles = local.skip_iam_grants ? [] : [
     "roles/browser",
     "roles/iam.securityReviewer",
     "roles/cloudasset.viewer"
@@ -34,25 +36,29 @@ locals {
   project_roles = var.org_integration ? [] : local.default_project_roles
 
   // if org_integration is true, organization_roles = local.default_organization_roles
-  organization_roles = (var.org_integration && !(local.exclude_folders || local.explicit_folders)) ? (
-    local.default_organization_roles
-    ) : (
-    (var.org_integration && (local.exclude_folders || local.explicit_folders)) ? (
-      ["roles/resourcemanager.organizationViewer"]
+  organization_roles = local.skip_iam_grants ? [] : (
+    (var.org_integration && !(local.exclude_folders || local.explicit_folders)) ? (
+      local.default_organization_roles
       ) : (
-      []
+      (var.org_integration && (local.exclude_folders || local.explicit_folders)) ? (
+        ["roles/resourcemanager.organizationViewer"]
+        ) : (
+        []
+      )
     )
   )
 
-  default_folder_roles = (var.org_integration && (local.exclude_folders || local.explicit_folders)) ? (
-    [
-      "roles/browser",
-      "roles/iam.securityReviewer",
-      "roles/cloudasset.viewer",
-      google_organization_iam_custom_role.lacework_custom_organization_role.0.name
-    ]
-    ) : (
-    []
+  default_folder_roles = local.skip_iam_grants ? [] : (
+    (var.org_integration && (local.exclude_folders || local.explicit_folders)) ? (
+      [
+        "roles/browser",
+        "roles/iam.securityReviewer",
+        "roles/cloudasset.viewer",
+        google_organization_iam_custom_role.lacework_custom_organization_role.0.name
+      ]
+      ) : (
+      []
+    )
   )
 
   folders = [
@@ -105,7 +111,7 @@ resource "google_project_iam_custom_role" "lacework_custom_project_role" {
   title       = "Lacework Compliance Role"
   description = "Lacework Compliance Role"
   permissions = ["bigquery.datasets.get", "compute.projects.get", "pubsub.topics.get", "storage.buckets.get", "compute.sslPolicies.get"]
-  count       = local.resource_level == "PROJECT" ? 1 : 0
+  count       = local.skip_iam_grants ? 0 : (local.resource_level == "PROJECT" ? 1 : 0)
 }
 
 
@@ -142,7 +148,7 @@ resource "google_organization_iam_custom_role" "lacework_custom_organization_rol
   title       = "Lacework Org Compliance Role"
   description = "Lacework Org Compliance Role"
   permissions = ["bigquery.datasets.get", "compute.projects.get", "pubsub.topics.get", "storage.buckets.get", "compute.sslPolicies.get"]
-  count       = local.resource_level == "ORGANIZATION" ? 1 : 0
+  count       = local.skip_iam_grants ? 0 : (local.resource_level == "ORGANIZATION" ? 1 : 0)
 }
 
 resource "google_organization_iam_member" "lacework_custom_organization_role_binding" {
@@ -150,7 +156,7 @@ resource "google_organization_iam_member" "lacework_custom_organization_role_bin
   role       = google_organization_iam_custom_role.lacework_custom_organization_role.0.name
   member     = "serviceAccount:${local.service_account_json_key.client_email}"
   depends_on = [google_organization_iam_custom_role.lacework_custom_organization_role]
-  count      = local.resource_level == "ORGANIZATION" ? 1 : 0
+  count      = local.skip_iam_grants ? 0 : (local.resource_level == "ORGANIZATION" ? 1 : 0)
 }
 
 resource "google_organization_iam_member" "for_lacework_service_account" {
