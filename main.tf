@@ -1,7 +1,7 @@
 locals {
   resource_level = var.org_integration ? "ORGANIZATION" : "PROJECT"
   resource_id    = var.org_integration ? var.organization_id : module.lacework_cfg_svc_account.project_id
-  project_id     = data.google_project.selected.project_id
+  project_id     = length(var.project_id) > 0 ? var.project_id : data.google_project.selected.project_id
 
   exclude_folders  = length(var.folders_to_exclude) != 0
   explicit_folders = length(var.folders_to_include) != 0
@@ -92,9 +92,7 @@ resource "random_id" "uniq" {
   byte_length = 4
 }
 
-data "google_project" "selected" {
-  project_id = var.project_id
-}
+data "google_project" "selected" {}
 
 module "lacework_cfg_svc_account" {
   source               = "lacework/service-account/gcp"
