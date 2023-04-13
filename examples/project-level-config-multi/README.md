@@ -25,7 +25,8 @@ variable "projects" {
 }
 
 module "gcp_project_config" {
-  source = "../../"
+  source  = "lacework/config/gcp"
+  version = "~> 2.0"
 
   for_each   = var.projects
   project_id = each.key
@@ -35,7 +36,7 @@ module "gcp_project_config" {
 Run Terraform:
 ```
 $ terraform init
-$ GOOGLE_CREDENTIALS=account.json GOOGLE_PROJECT=my-project terraform apply
+$ GOOGLE_CREDENTIALS=account.json terraform apply
 ```
 
 For detailed information on integrating Lacework with Google Cloud see [GCP Compliance and Audit Trail Integration - Configure Multiple Porjects with Terraform](https://docs.lacework.com/onboarding/gcp-compliance-and-audit-log-integration-terraform-using-google-cloud-shell#configure-multiple-projects-with-terraform)
