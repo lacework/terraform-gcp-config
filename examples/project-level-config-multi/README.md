@@ -1,11 +1,11 @@
-# Integrate multiple Google Cloud Project with Lacework for Configuration Assessment
-The following provides an example of integrating multiple Google Cloud project with Lacework for Cloud Resource configuration assessment.
+# Integrate Multiple Google Cloud Projects with Lacework for Configuration Assessment
+The following provides an example of integrating multiple Google Cloud projects with Lacework for cloud resource configuration assessment.
 
 The fields required for this example are:
 
 | Name       | Description                                                                                 | Type     |
 |------------|---------------------------------------------------------------------------------------------|----------|
-| `projects` | The id of each Project, which will be used to deploy required resources for the integration | `map` |
+| `projects` | The ID of each project, which will be used to deploy required resources for the integration | `map` |
 
 
 ```hcl
