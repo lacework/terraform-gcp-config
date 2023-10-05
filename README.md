@@ -51,7 +51,7 @@ storage-component.googleapis.com
 cloudasset.googleapis.com
 essentialcontacts.googleapis.com
 ```
-
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -111,7 +111,7 @@ essentialcontacts.googleapis.com
 | <a name="input_required_config_apis"></a> [required\_config\_apis](#input\_required\_config\_apis) | n/a | `map(any)` | <pre>{<br>  "bigquery": "bigquery.googleapis.com",<br>  "cloudasset_inventory": "cloudasset.googleapis.com",<br>  "compute": "compute.googleapis.com",<br>  "containers": "container.googleapis.com",<br>  "dns": "dns.googleapis.com",<br>  "essentialcontacts": "essentialcontacts.googleapis.com",<br>  "iam": "iam.googleapis.com",<br>  "kms": "cloudkms.googleapis.com",<br>  "logging": "logging.googleapis.com",<br>  "pubsub": "pubsub.googleapis.com",<br>  "resourcemanager": "cloudresourcemanager.googleapis.com",<br>  "serviceusage": "serviceusage.googleapis.com",<br>  "sqladmin": "sqladmin.googleapis.com",<br>  "storage_component": "storage-component.googleapis.com"<br>}</pre> | no |
 | <a name="input_service_account_name"></a> [service\_account\_name](#input\_service\_account\_name) | The Service Account name (required when use\_existing\_service\_account is set to true). This can also be used to specify the new service account name when use\_existing\_service\_account is set to false | `string` | `""` | no |
 | <a name="input_service_account_private_key"></a> [service\_account\_private\_key](#input\_service\_account\_private\_key) | The private key in JSON format, base64 encoded (required when use\_existing\_service\_account is set to true) | `string` | `""` | no |
-| <a name="input_skip_iam_grants"></a> [skip\_iam\_grants](#input\_skip\_iam\_grants) | Skip generation of custom role, and IAM grants to the Service Account, for customers who use IAM policy-as-code external to the Lacework module.  WARNING - integration will fail if grants are not in place prior to execution. 'use_existing_service_account' must also be set to `true` | `bool` | `false` | no |
+| <a name="input_skip_iam_grants"></a> [skip\_iam\_grants](#input\_skip\_iam\_grants) | Skip generation of custom role, and IAM grants to the Service Account, for customers who use IAM policy-as-code external to the Lacework module. WARNING - integration will fail if grants are not in place prior to execution. 'use\_existing\_service\_account' must also be set to `true` | `bool` | `false` | no |
 | <a name="input_use_existing_service_account"></a> [use\_existing\_service\_account](#input\_use\_existing\_service\_account) | Set this to true to use an existing Service Account | `bool` | `false` | no |
 | <a name="input_wait_time"></a> [wait\_time](#input\_wait\_time) | Amount of time to wait before the next resource is provisioned | `string` | `"10s"` | no |
 
@@ -121,3 +121,4 @@ essentialcontacts.googleapis.com
 |------|-------------|
 | <a name="output_service_account_name"></a> [service\_account\_name](#output\_service\_account\_name) | The Service Account name |
 | <a name="output_service_account_private_key"></a> [service\_account\_private\_key](#output\_service\_account\_private\_key) | The private key in JSON format, base64 encoded |
+<!-- END_TF_DOCS -->
