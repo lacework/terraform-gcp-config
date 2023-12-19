@@ -25,7 +25,7 @@ provider "lacework" {}
 
 module "gcp_organization_level_config" {
   source = "lacework/config/gcp"
-  version = "~> 2.0"
+  version = "~> 3.0"
   
   # Set this integration to be created at the Organization level,
   # a project id is needed since Lacework needs to deploy a few

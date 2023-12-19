@@ -34,7 +34,7 @@ provider "lacework" {}
 
 module "gcp_project_level_config" {
   source  = "lacework/config/gcp"
-  version = "~> 2.0"
+  version = "~> 3.0"
 
   use_existing_service_account = true
   service_account_name         = "my-service-account"
