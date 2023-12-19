@@ -26,7 +26,7 @@ variable "projects" {
 
 module "gcp_project_config" {
   source  = "lacework/config/gcp"
-  version = "~> 2.0"
+  version = "~> 3.0"
 
   for_each   = var.projects
   project_id = each.key
