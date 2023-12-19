@@ -66,7 +66,7 @@ essentialcontacts.googleapis.com
 | Name | Version |
 |------|---------|
 | <a name="provider_google"></a> [google](#provider\_google) | >= 4.4.0, < 5.0.0 |
-| <a name="provider_lacework"></a> [lacework](#provider\_lacework) | ~> 1.0 |
+| <a name="provider_lacework"></a> [lacework](#provider\_lacework) | ~> 2.0 |
 | <a name="provider_random"></a> [random](#provider\_random) | n/a |
 | <a name="provider_time"></a> [time](#provider\_time) | ~> 0.6 |
 
@@ -121,4 +121,3 @@ essentialcontacts.googleapis.com
 |------|-------------|
 | <a name="output_service_account_name"></a> [service\_account\_name](#output\_service\_account\_name) | The Service Account name |
 | <a name="output_service_account_private_key"></a> [service\_account\_private\_key](#output\_service\_account\_private\_key) | The private key in JSON format, base64 encoded |
-<!-- END_TF_DOCS -->
