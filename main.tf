@@ -110,7 +110,7 @@ resource "google_project_iam_custom_role" "lacework_custom_project_role" {
   role_id     = "lwComplianceRole_${random_id.uniq.hex}"
   title       = "Lacework Compliance Role"
   description = "Lacework Compliance Role"
-  permissions = ["bigquery.datasets.get", "compute.projects.get", "pubsub.topics.get", "storage.buckets.get", "compute.sslPolicies.get"]
+  permissions = ["bigquery.datasets.get", "compute.projects.get", "pubsub.topics.get", "storage.buckets.get", "compute.sslPolicies.get", "appengine.instances.list"]
   count       = local.skip_iam_grants ? 0 : (local.resource_level == "PROJECT" ? 1 : 0)
 }
 
@@ -147,7 +147,7 @@ resource "google_organization_iam_custom_role" "lacework_custom_organization_rol
   org_id      = var.organization_id
   title       = "Lacework Org Compliance Role"
   description = "Lacework Org Compliance Role"
-  permissions = ["bigquery.datasets.get", "compute.projects.get", "pubsub.topics.get", "storage.buckets.get", "compute.sslPolicies.get"]
+  permissions = ["bigquery.datasets.get", "compute.projects.get", "pubsub.topics.get", "storage.buckets.get", "compute.sslPolicies.get", "appengine.instances.list"]
   count       = local.skip_iam_grants ? 0 : (local.resource_level == "ORGANIZATION" ? 1 : 0)
 }
 
