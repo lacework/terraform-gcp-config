@@ -60,6 +60,7 @@ variable "required_config_apis" {
     storage_component    = "storage-component.googleapis.com"
     cloudasset_inventory = "cloudasset.googleapis.com"
     essentialcontacts    = "essentialcontacts.googleapis.com"
+    appengine            = "appengine.googleapis.com"
   }
 }
 
