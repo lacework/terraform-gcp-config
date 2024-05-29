@@ -124,7 +124,7 @@ resource "google_project_iam_member" "lacework_custom_project_role_binding" {
   role       = google_project_iam_custom_role.lacework_custom_project_role.0.name
   member     = "serviceAccount:${local.service_account_json_key.client_email}"
   depends_on = [google_project_iam_custom_role.lacework_custom_project_role]
-  count      = local.resource_level == "PROJECT" ? 1 : 0
+  count      = local.skip_iam_grants ? 0 : local.resource_level == "PROJECT" ? 1 : 0
 }
 
 resource "google_project_iam_member" "for_lacework_service_account" {
