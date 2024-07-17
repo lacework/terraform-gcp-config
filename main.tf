@@ -23,13 +23,15 @@ locals {
   default_project_roles = local.skip_iam_grants ? [] : [
     "roles/browser",
     "roles/iam.securityReviewer",
-    "roles/cloudasset.viewer"
+    "roles/cloudasset.viewer",
+    "roles/policyanalyzer.activityAnalysisViewer"
   ]
 
   default_organization_roles = local.skip_iam_grants ? [] : [
     "roles/browser",
     "roles/iam.securityReviewer",
-    "roles/cloudasset.viewer"
+    "roles/cloudasset.viewer",
+    "roles/policyanalyzer.activityAnalysisViewer"
   ]
 
   // if org_integration is false, project_roles = local.default_project_roles
@@ -54,6 +56,7 @@ locals {
         "roles/browser",
         "roles/iam.securityReviewer",
         "roles/cloudasset.viewer",
+        "roles/policyanalyzer.activityAnalysisViewer",
         google_organization_iam_custom_role.lacework_custom_organization_role.0.name
       ]
       ) : (
