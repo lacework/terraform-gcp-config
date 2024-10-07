@@ -1,10 +1,8 @@
 # Release Notes
-Another day, another release. These are the release notes for the version `v3.1.0`.
+Another day, another release. These are the release notes for the version `v3.2.0`.
 
 ## Features
-* feat(GROW-2928): Add an output to capture Lacework integration GUID (#96) (Lei Jin)([3f7f3d8](https://github.com/lacework/terraform-gcp-config/commit/3f7f3d87ff5fa3e4b96435652a00d0b1097150d3))
-## Bug Fixes
-* fix: remove google provider version in examples (#93) (Matt Cadorette)([c0c0fc7](https://github.com/lacework/terraform-gcp-config/commit/c0c0fc73e11a2761078cf8c50264bb8a290f337d))
+* feat: add policyanalyzer.activityAnalysisViewer (#99) (hazedav)([b52b22f](https://github.com/lacework/terraform-gcp-config/commit/b52b22f4248bd26d2d104066963e942062376967))
 ## Other Changes
-* ci: migrate from codefresh to github actions (#92) (Timothy MacDonald)([3e52279](https://github.com/lacework/terraform-gcp-config/commit/3e5227998bb1a1417d520920ffe391560aa51c55))
-* ci: version bump to v3.0.3-dev (Lacework)([b2934fd](https://github.com/lacework/terraform-gcp-config/commit/b2934fd7b3194e582e3290f784c4348a2bf2c4b6))
+* chore(GROW-2952): add codeowners (#98) (Matt Cadorette)([2e52c0a](https://github.com/lacework/terraform-gcp-config/commit/2e52c0a102994e40915d0066a14a91a7d88db3cf))
+* ci: version bump to v3.1.1-dev (Lacework)([1756476](https://github.com/lacework/terraform-gcp-config/commit/175647656c7851df6ea2fb49e17ff16e095bc06b))
