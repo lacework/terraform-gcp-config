@@ -17,5 +17,5 @@ module "gcp_project_config" {
   source = "../../"
 
   for_each   = var.projects
-  project_id = each.key
+  project_id = each.value
 }
