@@ -5,6 +5,4 @@ terraform {
       source = "lacework/lacework"
     }
   }
-
-
 }
