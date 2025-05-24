@@ -118,7 +118,7 @@ policyanalyzer.googleapis.com
 | <a name="input_service_account_private_key"></a> [service\_account\_private\_key](#input\_service\_account\_private\_key) | The private key in JSON format, base64 encoded (required when use\_existing\_service\_account is set to true) | `string` | `""` | no |
 | <a name="input_skip_iam_grants"></a> [skip\_iam\_grants](#input\_skip\_iam\_grants) | Skip generation of custom role, and IAM grants to the Service Account, for customers who use IAM policy-as-code external to the Lacework module. WARNING - integration will fail if grants are not in place prior to execution. 'use\_existing\_service\_account' must also be set to `true` | `bool` | `false` | no |
 | <a name="input_use_existing_service_account"></a> [use\_existing\_service\_account](#input\_use\_existing\_service\_account) | Set this to true to use an existing Service Account | `bool` | `false` | no |
-| <a name="input_wait_time"></a> [wait\_time](#input\_wait\_time) | Amount of time to wait before the next resource is provisioned | `string` | `"10s"` | no |
+| <a name="input_wait_time"></a> [wait\_time](#input\_wait\_time) | Amount of time to wait before the next resource is provisioned | `string` | `"30s"` | no |
 
 ## Outputs
 
