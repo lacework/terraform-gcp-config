@@ -105,9 +105,6 @@ policyanalyzer.googleapis.com
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_folders_to_exclude"></a> [folders\_to\_exclude](#input\_folders\_to\_exclude) | List of root folders to exclude in an organization-level integration.  Format is 'folders/1234567890' | `set(string)` | `[]` | no |
-| <a name="input_folders_to_include"></a> [folders\_to\_include](#input\_folders\_to\_include) | List of root folders to include in an organization-level integration.  Format is 'folders/1234567890' | `set(string)` | `[]` | no |
-| <a name="input_include_root_projects"></a> [include\_root\_projects](#input\_include\_root\_projects) | Enables logic to include root-level projects if excluding folders.  Default is true | `bool` | `true` | no |
 | <a name="input_lacework_integration_name"></a> [lacework\_integration\_name](#input\_lacework\_integration\_name) | n/a | `string` | `"TF config"` | no |
 | <a name="input_org_integration"></a> [org\_integration](#input\_org\_integration) | If set to true, configure an organization level integration | `bool` | `false` | no |
 | <a name="input_organization_id"></a> [organization\_id](#input\_organization\_id) | The organization ID, required if org\_integration is set to true | `string` | `""` | no |
