@@ -22,12 +22,12 @@ locals {
   all_projects = flatten([
     for folder_key, folder_data in data.google_cloud_asset_search_all_resources.folder_projects : [
       for res in folder_data.results : {
-        folder_key = folder_key
-        folder_id  = var.folders[folder_key]
+        folder_key  = folder_key
+        folder_id   = var.folders[folder_key]
         project_num = split("/", res.project)[1]
-        project_id = split("/", res.name)[length(split("/", res.name)) - 1]
-        name       = res.display_name
-        state      = res.state
+        project_id  = split("/", res.name)[length(split("/", res.name)) - 1]
+        name        = res.display_name
+        state       = res.state
       }
     ]
   ])
