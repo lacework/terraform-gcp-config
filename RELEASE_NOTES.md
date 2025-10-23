@@ -1,6 +1,7 @@
 # Release Notes
-Another day, another release. These are the release notes for the version `v3.2.4`.
+Another day, another release. These are the release notes for the version `v3.2.5`.
 
+## Bug Fixes
+* fix(RAIN-94982): Remove folders_to_include&exclude and add support of by folder level (#111) (Tim Jin)([d226a9c](https://github.com/lacework/terraform-gcp-config/commit/d226a9cb4078a4257bcf8bf0bc81d8485147c4f0))
 ## Other Changes
-* chore(RAIN-94708): Increase wait_time to fix GCP Config Folder support (#109) (Tim Jin)([3406a17](https://github.com/lacework/terraform-gcp-config/commit/3406a17d32545f2900017af867b28d296a52314a))
-* ci: version bump to v3.2.4-dev (Lacework)([5478c7e](https://github.com/lacework/terraform-gcp-config/commit/5478c7e1db5428d76e5f42669e69a102380bd335))
+* ci: version bump to v3.2.5-dev (Lacework)([22e8d31](https://github.com/lacework/terraform-gcp-config/commit/22e8d31958c92d9e911df79d3f41cea12df16e9f))
